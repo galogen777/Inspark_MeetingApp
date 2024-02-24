@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
@@ -75,6 +76,8 @@ class MainPageListScreen extends StatefulWidget {
 
   final String title;
 
+
+
   @override
   State<MainPageListScreen> createState() => _MainPageListScreenState();
 }
@@ -101,6 +104,9 @@ class _MainPageListScreenState extends State<MainPageListScreen> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    final double tileHeight =120;
+    final double tileWidth =100;
+    List <int> exampleList =  [1,2,3,4];
     return Scaffold(
       // appBar: AppBar(
       //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -157,29 +163,79 @@ class _MainPageListScreenState extends State<MainPageListScreen> {
                 }
             ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+            Wrap(
+
+              runSpacing: 15,
+              spacing: 15,
+
               children: [
-                Container(
-                  height: 150,
-                  width: 100,
 
-                  decoration: BoxDecoration(
-                      color: Colors.red,
+                InkWell(
+                    onTap: () => _showToast(context), // Handle your callback
+                    child: Ink(
+                      height: tileHeight,
+                      width: tileWidth,
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(10),
 
-                  ),
+                      ),
+                    )
                 ),
                 InkWell(
                   onTap: () => _showToast(context), // Handle your callback
                   child: Ink(
-                  height: 150,
-                  width: 100,
+                  height: tileHeight,
+                  width: tileWidth,
                   decoration: BoxDecoration(
                     color: Colors.green,
-                    borderRadius: BorderRadius.circular(10)
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
                   ),
+
                 )
-                )
+                ),
+                InkWell(
+                    onTap: () => _showToast(context), // Handle your callback
+                    child: Ink(
+                      height: tileHeight,
+                      width: tileWidth,
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                    )
+                ),
+                InkWell(
+                    onTap: () => _showToast(context), // Handle your callback
+                    child: Ink(
+                      height: tileHeight,
+                      width: tileWidth,
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                    )
+                ),
+                InkWell(
+                    onTap: () => _showToast(context), // Handle your callback
+                    child: Ink(
+                      height: tileHeight,
+                      width: tileWidth,
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                    )
+                ),
 
               ],
 
@@ -230,11 +286,28 @@ class _ServiceScreenState extends State<ServiceScreen> {
 
 @override
 Widget build(BuildContext context){
+  final items = List<Widget>.generate(
+    1000,
+        (i) => i % 6 == 0
+        ? Text('Heading $i')
+        : Text('Sender $i'),
+  );
+
     return Scaffold(
       appBar: AppBar(
         title:  Text('This is $serviceNumber' ?? '....'),
 
-      )
+      ),
+
+      body: GridView.count(
+        primary: false,
+        padding: const EdgeInsets.all(20),
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        crossAxisCount: 2,
+        physics: const ScrollPhysics(),
+        children: items.map((i) => i).toList()
+      ),
 
 
     );
