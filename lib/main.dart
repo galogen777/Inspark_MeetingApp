@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'features/service_list/widgets/widgets.dart';
 import 'features/service_list/view/view.dart';
 import 'router/router.dart';
@@ -6,6 +7,11 @@ import 'router/router.dart';
 import 'theme/theme.dart';
 
 void main() {
+  //зафиксировать экран только горизонтальнос
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeRight,
+  ]);
   runApp(const MeetingRoomMananger());
 }
 
