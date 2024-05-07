@@ -66,7 +66,7 @@ class _MainPageListScreenState extends State<MainPageListScreen> {
     const double tileHeight = 120;
     const double tileWidth = 100;
     final buttonItems = List<Widget>.generate(
-      12,
+      10,
           (i) =>
               InkWell(
                   onTap: () => {
@@ -136,7 +136,6 @@ class MeetingsListWidget extends StatelessWidget {
     return Row(
       children: [
         Flexible(
-
           //Expanded form whore screen
           child: ListView.separated(
               shrinkWrap: true,

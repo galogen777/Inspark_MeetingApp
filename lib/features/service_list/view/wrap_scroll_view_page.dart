@@ -22,8 +22,7 @@ Widget build(BuildContext context) {
         (i) =>
         InkWell(
             onTap: () => {
-              Navigator.of(context)
-                  .pushNamed("/test")
+              //Navigator.of(context).pushNamed("/test")
             },//_showToast(context), // Handle your callback
             child: Container(
               child: Stack(
@@ -41,7 +40,7 @@ Widget build(BuildContext context) {
                         ],
                         begin: FractionalOffset(0.0, 1.0),
                         end: FractionalOffset(0.0, 0.0),
-                        stops: [0.0, 0.4],
+                        stops: [0.0, 0.8],
                         ),
                     boxShadow: [
                       BoxShadow(
@@ -56,24 +55,51 @@ Widget build(BuildContext context) {
 
                    children: [
                      SizedBox(
-                       height: 75,
+                       height: 56,
                      ),
-                     Text('test1'),
+                     Padding(
+                       padding: const EdgeInsets.all(8.0),
+                       child: Text('Включить свет в переговорной',
+                         textAlign: TextAlign.center,
+                         style: TextStyle(
+                           fontSize: 16,
+                           height: 1.1,
+                           fontWeight: FontWeight.w500,
+                           color: Colors.white70
+                         ),
+
+                       ),
+                     ),
 
 
                    ],
+
                   ),
                 ),
-                  Positioned(
-                    left: 65,
 
-                    child: SvgPicture.asset(
-                      'assets/co2.svg',
-                      height: 35,
-                      width: 35,
-                      colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
-                    ),
-                  ),
+                  Column(
+
+                    children: [
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        
+                        children: [
+
+                           Padding(
+                             padding: const EdgeInsets.all(8.0),
+                             child: SvgPicture.asset(
+                              'assets/co2.svg',
+                              height: 35,
+                              width: 35,
+                              colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                                                       ),
+                           ),
+                        //),
+                      ])
+
+                    ],
+                  )
                 ] //Stack children
               ),
             )),
@@ -82,6 +108,62 @@ Widget build(BuildContext context) {
 
   return Scaffold(
     //appBar: AppBar(title: const Text('SingleChildScrollView + Wrap')),
+    appBar: AppBar(
+        title: const Text(
+          'Переговорная Бештау',
+          style: TextStyle(color: Colors.white70),
+        ),
+        backgroundColor: Colors.black87,
+        actions: <Widget>[
+
+
+          Container(
+            child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(width: 160.0,
+                    child: const Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [Text("Москва",style: TextStyle(fontSize: 20,color: Colors.white70),)]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                          children: [Text("17:56",style: TextStyle(fontSize: 18,color: Colors.white70),)]
+                      )],
+                    ),
+                  ),
+                  Container(width: 160.0,
+                    child: const Column(
+                      children: [
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Text("Новосибирск",style: TextStyle(fontSize: 20,color: Colors.white70),)]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Text("19:56",style: TextStyle(fontSize: 18,color: Colors.white70),)]
+                        )],
+                    ),
+                  ),
+                  Container(width: 160.0,
+                    child: const Column(
+                      children: [
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Text("Иркутск",style: TextStyle(fontSize: 20,color: Colors.white70),)]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Text("22:56",style: TextStyle(fontSize: 18,color: Colors.white70),)]
+                        )],
+                    ),
+                  ),
+
+              ],
+            ),
+          )
+        ]
+    ),
+
     body:  SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -118,17 +200,45 @@ Widget build(BuildContext context) {
         //   ],
         // ),
 
+
         Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Flexible(
               flex: 3,
               child: Container(
-                margin: new EdgeInsets.only(right:5.0),
-                color: Colors.orange,
-                child: ListView.builder(
+                margin: const EdgeInsets.only(right:5.0),
+                color: Colors.black87,
+
+                child: ListView.separated(
+
+                  padding: const EdgeInsets.only(top: 20,bottom: 20),
+                  itemCount: 7,
                   physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (_, i) => ListTile(title: Text("List2: $i")),
+                  itemBuilder: (_, i) => ListTile(
+                      //title: Text("List 1: $i"),
+                      textColor: Colors.white,
+
+                    leading: SvgPicture.asset(
+                    'assets/co2.svg',
+                    colorFilter:ColorFilter.mode(Colors.white70, BlendMode.srcIn) ,
+                    height: 100,
+                    width: 100,
+                  ),
+                    title: Text(
+                      '698 ppm',
+                        textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 24
+
+                      )
+
+                    ),
+
+                ), separatorBuilder: (context, index) => SizedBox(
+                  height: 24,
+                ),
                 ),
               ),
             ),
@@ -163,6 +273,27 @@ Widget build(BuildContext context) {
           ],
         )
       ),
+    ),
+    bottomNavigationBar: BottomNavigationBar(
+      backgroundColor: Colors.black87,
+      selectedItemColor: Colors.white70,
+      unselectedItemColor: Colors.white30,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Badge(child: Icon(Icons.notifications_sharp)),
+          label: 'Уведомления',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.brightness_5),
+          label: 'Настройки',
+        ),
+      ],
+      currentIndex: 0,
+      //onTap: _onItemTapped,
     ),
   );
 }

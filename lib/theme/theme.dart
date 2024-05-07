@@ -14,6 +14,6 @@ final themeMain = ThemeData(
         ),
         displaySmall: TextStyle(
           color: Colors.grey,
-          fontSize: 15,
+          fontSize: 16,
           fontWeight: FontWeight.w300,
         )));
