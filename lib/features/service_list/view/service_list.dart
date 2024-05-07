@@ -36,7 +36,7 @@ class _ServiceListScreenState extends State<ServiceListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title:  Text('This is $serviceNumber' ?? '....'),
+        title:  Text('This is $serviceNumber'),
 
       ),
 
