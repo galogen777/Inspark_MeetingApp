@@ -1,0 +1,4 @@
+enum MeetingButtonType {
+  OnOff,
+  IncDec
+}
