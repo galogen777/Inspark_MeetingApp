@@ -1,4 +1,5 @@
 enum MeetingButtonType {
   OnOff,
-  IncDec
+  IncDec,
+  VUpVDown
 }

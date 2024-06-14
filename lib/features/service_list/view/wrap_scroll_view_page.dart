@@ -64,12 +64,14 @@ Widget build(BuildContext context) {
       //['Вентиляция','assets/climate_ventilation.svg',MeetingButtonType.IncDec],
       ['Температура','assets/temperature.svg',MeetingButtonType.IncDec],
       ['ТВ панель','assets/001_Multimedia_power.svg',MeetingButtonType.OnOff],
-      ['Звук','assets/001_Multimedia_volume.svg',MeetingButtonType.OnOff],
+      ['Звук','assets/001_Multimedia_volume.svg',MeetingButtonType.VUpVDown],
       ['Чай/кофе','assets/001_coffee.svg',MeetingButtonType.OnOff],
       ['Требуется уборка','assets/001_cleaning.svg',MeetingButtonType.OnOff],
       ['Помощь ИТ','assets/ITSupport.svg',MeetingButtonType.OnOff],
       ['Гостевой Wi-Fi','assets/001_wifi.svg',MeetingButtonType.OnOff],
       ['Переключить ОС','assets/winAndroid.svg',MeetingButtonType.OnOff],
+      ['Навигация','assets/routing.svg',MeetingButtonType.OnOff],
+      ['Ассистент','assets/voice-assistant.svg',MeetingButtonType.OnOff],
     ];
     final monitoringCardsList = [
       ['29 '+ '\u2103','assets/Climate_temperature_001_Celcius.svg',MeetingButtonType.IncDec],
@@ -169,7 +171,43 @@ Widget build(BuildContext context) {
                            ),
 
                          ]
-                        )
+                        ),
+                        if (i<buttonsList.length && buttonsList[i][2]==MeetingButtonType.VUpVDown)
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextButton(
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: Colors.white,
+                                      padding: const EdgeInsets.only(left: 1),
+                                      textStyle: const TextStyle(fontSize: 20),
+                                    ),
+                                    onPressed: () {},
+                                    child: SvgPicture.asset(
+                                      'assets/001_speakerUp.svg',
+                                      height: 30,
+                                      width: 30,
+                                      colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                                    )
+                                ),
+
+                                TextButton(
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: Colors.white,
+                                      padding: const EdgeInsets.only(left: 1),
+                                      textStyle: const TextStyle(fontSize: 20),
+                                    ),
+                                    onPressed: () {},
+                                    child: SvgPicture.asset(
+                                      'assets/001_speakerDown.svg',
+                                      height: 30,
+                                      width: 30,
+                                      colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                                    )
+                                ),
+
+                              ]
+                          )
 
                    ],
                   ),
@@ -201,14 +239,14 @@ Widget build(BuildContext context) {
   return Scaffold(
     //appBar: AppBar(title: const Text('SingleChildScrollView + Wrap')),
     appBar: AppBar(
-        title: const Text(
+        title: const Text( //заголовок
           'Переговорная Бештау (544)',
           style: TextStyle(color: Colors.white70),
         ),
         backgroundColor: Colors.black87,
         actions: <Widget>[
           Container(
-            child: Row(
+            child: Row( //Название переговорки и время в городах
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(width: 160.0,
@@ -254,13 +292,14 @@ Widget build(BuildContext context) {
     ),
 
     body:  SafeArea(
+
       child: Padding(
         padding: const EdgeInsets.all(2.0),
         child:
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Flexible(
+            Flexible( //левая часть основного окна
               flex: 3,
               child: Container(
                 margin: const EdgeInsets.only(right:5.0),
@@ -297,7 +336,7 @@ Widget build(BuildContext context) {
                 ),
               ),
             ),
-            Flexible(
+            Flexible(//центральная область
               flex:7,
               child: GridView.count(
                   primary: false,
@@ -312,8 +351,7 @@ Widget build(BuildContext context) {
                   children: buttonItems.map((i) => i).toList()
               ),
             ),
-
-            Flexible(
+            Flexible( //Сведения о встречах
               flex: 3, //вино, 5 букв, погоризонтали
               child: Container(
                 margin: new EdgeInsets.only(left:5.0),

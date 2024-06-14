@@ -4,7 +4,7 @@ final themeMain = ThemeData(
     dividerColor: Colors.white70,
     colorScheme: ColorScheme.fromSeed(
         seedColor: Colors.cyan,
-        background: const Color.fromARGB(255, 255, 255, 240)),
+        background: const Color.fromARGB(255, 255, 255, 255)),
     useMaterial3: true,
     textTheme: const TextTheme(
       headlineMedium: TextStyle(
