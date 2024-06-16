@@ -61,7 +61,7 @@ Widget build(BuildContext context) {
     final buttonsList = [
       ['Включить свет','assets/Lights_bulb_001_on.svg',MeetingButtonType.OnOff],
       ['Жалюзи','assets/002_blinds.svg',MeetingButtonType.IncDec],
-      //['Вентиляция','assets/climate_ventilation.svg',MeetingButtonType.IncDec],
+      ['Вентиляция','assets/climate_ventilation.svg',MeetingButtonType.IncDec],
       ['Температура','assets/temperature.svg',MeetingButtonType.IncDec],
       ['ТВ панель','assets/001_Multimedia_power.svg',MeetingButtonType.OnOff],
       ['Звук','assets/001_Multimedia_volume.svg',MeetingButtonType.VUpVDown],
